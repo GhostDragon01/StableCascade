@@ -5,6 +5,12 @@ from transformers import AutoTokenizer, CLIPTextModelWithProjection, CLIPVisionM
 from warmup_scheduler import GradualWarmupScheduler
 
 import sys
+
+# Add project root to the path
+project_root = '/kaggle/working/stable_cascade' 
+if project_root not in sys.path:
+    sys.path.append(project_root)
+
 import os
 import re
 from dataclasses import dataclass

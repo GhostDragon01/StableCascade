@@ -1,12 +1,12 @@
 # GLOBAL STUFF
 experiment_id: stage_c_3b_lora
-checkpoint_path: /path/to/checkpoint
-output_path: /path/to/output
+checkpoint_path: /kaggle/working/
+output_path: /kaggle/working/
 model_version: 3.6B
 
 # WandB
-wandb_project: StableCascade
-wandb_entity: wandb_username
+# wandb_project: StableCascade
+# wandb_entity: wandb_username
 
 # TRAINING PARAMS
 lr: 1.0e-4
@@ -29,7 +29,7 @@ module_filters: ['.attn']
 rank: 4
 train_tokens:
   # - ['^snail', null] # token starts with "snail" -> "snail" & "snails", don't need to be reinitialized
-  - ['[fernando]', '^dog</w>'] # custom token [snail], initialize as avg of snail & snails
+  - ['[habib]', '^person</w>'] # custom token [snail], initialize as avg of snail & snails
 
 
 # ema_start_iters: 5000
@@ -37,8 +37,7 @@ train_tokens:
 # ema_beta: 0.9
 
 webdataset_path:
-  - s3://path/to/your/first/dataset/on/s3
-  - s3://path/to/your/second/dataset/on/s3
+  - file:/kaggle/working/dataset.tar
 effnet_checkpoint_path: models/effnet_encoder.safetensors
 previewer_checkpoint_path: models/previewer.safetensors
 generator_checkpoint_path: models/stage_c_bf16.safetensors
