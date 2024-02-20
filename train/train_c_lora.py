@@ -6,10 +6,11 @@ from warmup_scheduler import GradualWarmupScheduler
 
 import sys
 
-# Add project root to the path
-project_root = '/kaggle/working/stable_cascade' 
-if project_root not in sys.path:
-    sys.path.append(project_root)
+# Add project roots to the path
+project_roots = ['/kaggle/working/stable_cascade', '/content/stable_cascade']
+for p in project_roots:
+    if p not in sys.path:
+        sys.path.append(p)
 
 import os
 import re
