@@ -277,7 +277,7 @@ class WurstCore(TrainingCore, DataCore, WarpCore):
             latents = self.encode_latents(batch, models, extras)
             noised, noise, target, logSNR, noise_cond, loss_weight = extras.gdf.diffuse(latents, shift=1, loss_shift=1)
 
-        with torch.cuda.amp.autocast(dtype=torch.float32):
+        with torch.cuda.amp.autocast(dtype=torch.bfloat16):
             pred = models.generator(noised, noise_cond, **conditions)
             loss = nn.functional.mse_loss(pred, target, reduction='none').mean(dim=[1, 2, 3])
             loss_adjusted = (loss * loss_weight).mean() / self.config.grad_accum_steps
